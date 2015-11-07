@@ -1,4 +1,4 @@
-package com.jwzhang;
+package com.jwzhang.model;
 
 import com.google.gson.annotations.SerializedName;
 
