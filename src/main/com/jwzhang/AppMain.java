@@ -10,7 +10,7 @@ public class AppMain {
         GitHubClient githubClient = new GitHubClient(HttpClientBuilder.create().build());
         SensitiveWordsWatchman sensitiveWordsWatchman = new SensitiveWordsWatchman(githubClient);
 
-        GitHubSearchResult results = sensitiveWordsWatchman.watch("user:iambowen rea");
+        GitHubSearchResult results = sensitiveWordsWatchman.watch("user:iambowen whatever");
 
         results.getItems().forEach(item -> System.out.println(item.getHtmlUrl()));
     }
