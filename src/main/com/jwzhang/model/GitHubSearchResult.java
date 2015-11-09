@@ -1,5 +1,6 @@
 package com.jwzhang.model;
 
+import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -10,6 +11,12 @@ public class GitHubSearchResult {
     @SerializedName("incomplete_results")
     private Boolean incompleteResults;
     private List<GitHubItem> items;
+
+    public GitHubSearchResult() {
+        this.totalCounts = 0;
+        this.incompleteResults = false;
+        this.items = Lists.newArrayList();
+    }
 
     public Integer getTotalCounts() {
         return totalCounts;

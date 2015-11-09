@@ -6,7 +6,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.protocol.HTTP;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -36,7 +35,7 @@ public class GitHubClientTest {
 
     @Before
     public void setup() {
-        gitHubClient = new GitHubClient(httpClient, path);
+        gitHubClient = new GitHubClient(httpClient);
         empty = "{\n" +
             "  \"total_count\": 0,\n" +
             "  \"incomplete_results\": false,\n" +

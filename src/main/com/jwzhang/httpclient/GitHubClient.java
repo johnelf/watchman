@@ -18,14 +18,13 @@ import java.net.URISyntaxException;
 public class GitHubClient {
 
     private final HttpClient httpClient;
-    private final String path;
+    private final String path = "/search/code";
     private final String gitHubApiHost = "api.github.com";
     private final String scheme = "https";
     private final Gson gson;
 
-    public GitHubClient(HttpClient httpClient, String path) {
+    public GitHubClient(HttpClient httpClient) {
         this.httpClient = httpClient;
-        this.path = path;
         this.gson = new Gson();
     }
 
