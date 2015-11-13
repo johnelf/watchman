@@ -1,7 +1,7 @@
 package com.jwzhang.httpclient;
 
 import com.google.gson.Gson;
-import com.jwzhang.model.GitHubSearchResult;
+import com.jwzhang.model.github.GitHubSearchResult;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;

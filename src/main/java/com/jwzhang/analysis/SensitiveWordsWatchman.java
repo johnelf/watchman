@@ -1,7 +1,7 @@
 package com.jwzhang.analysis;
 
 import com.jwzhang.httpclient.GitHubClient;
-import com.jwzhang.model.GitHubSearchResult;
+import com.jwzhang.model.github.GitHubSearchResult;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

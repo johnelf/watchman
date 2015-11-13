@@ -1,4 +1,4 @@
-package com.jwzhang.model;
+package com.jwzhang.model.github;
 
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;

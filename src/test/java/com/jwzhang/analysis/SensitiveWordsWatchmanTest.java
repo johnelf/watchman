@@ -2,9 +2,8 @@ package com.jwzhang.analysis;
 
 import com.google.common.collect.Lists;
 import com.jwzhang.httpclient.GitHubClient;
-import com.jwzhang.model.GitHubItem;
-import com.jwzhang.model.GitHubSearchResult;
-import org.apache.http.impl.client.HttpClients;
+import com.jwzhang.model.github.GitHubItem;
+import com.jwzhang.model.github.GitHubSearchResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;

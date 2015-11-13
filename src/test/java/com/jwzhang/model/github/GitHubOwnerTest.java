@@ -1,7 +1,7 @@
-package com.jwzhang.model;
+package com.jwzhang.model.github;
 
 import com.google.gson.Gson;
-import com.jwzhang.model.GitHubOwner;
+import com.jwzhang.model.github.GitHubOwner;
 import org.junit.Before;
 import org.junit.Test;
 

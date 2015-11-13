@@ -2,7 +2,7 @@ package com.jwzhang;
 
 import com.jwzhang.analysis.SensitiveWordsWatchman;
 import com.jwzhang.httpclient.GitHubClient;
-import com.jwzhang.model.GitHubSearchResult;
+import com.jwzhang.model.github.GitHubSearchResult;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 public class AppMain {
