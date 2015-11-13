@@ -21,6 +21,7 @@ public class CSVInputParser {
         try {
             FileReader fileReader = new FileReader(fileName);
             new CSVParser(fileReader, csvFileFormat).getRecords().forEach(record -> addToRecordSet(record, result));
+            result.remove(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
