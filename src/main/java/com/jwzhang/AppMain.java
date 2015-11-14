@@ -7,11 +7,10 @@ import com.jwzhang.io.GitHubRegex;
 import com.jwzhang.model.github.GitHubItem;
 import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
+import com.sun.media.sound.InvalidFormatException;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import javax.swing.text.html.Option;
 import java.io.*;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
@@ -21,16 +20,23 @@ public class AppMain {
 
     public static void main(String[] args) throws IOException {
 
+        if (args.length < 2) {
+            System.out.println("Two Arguments are required.");
+            return;
+        }
+
         GitHubClient githubClient = new GitHubClient(HttpClientBuilder.create().build());
         SensitiveWordsWatchman sensitiveWordsWatchman = new SensitiveWordsWatchman(githubClient);
         CSVInputParser csvInputParser = new CSVInputParser();
         GitHubRegex gitHubRegex = new GitHubRegex();
 
         List<User> users = csvInputParser.parse(
-            Optional.of(args[0]).map(AppMain::filterNullValue).map(AppMain::getFileName).get());
+            Optional.of(args[0]).map(AppMain::validateFileName).map(AppMain::getFileName).get());
+
+        String targetFile = Paths.get("").toAbsolutePath().toString() + "/report.html";
 
         BufferedWriter output = null;
-        File file = new File("/tmp/a.html");
+        File file = new File(targetFile);
         output = new BufferedWriter(new FileWriter(file));
         output.write("<head title=" + keywords + "\"><head>\n<body>");
         String userNames = "";
@@ -55,8 +61,11 @@ public class AppMain {
         output.close();
     }
 
-    private static String filterNullValue(String n) {
-        return n == null ? "" : n;
+    private static String validateFileName(String n) {
+        if (n == null || n.equals("") || !n.endsWith(".csv")) {
+            return "example.csv";
+        }
+        return  n;
     }
 
     private static String getFileName(String name) {
