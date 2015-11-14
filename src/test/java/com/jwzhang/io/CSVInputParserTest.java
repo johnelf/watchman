@@ -25,4 +25,17 @@ public class CSVInputParserTest {
         String fileName = this.getClass().getClassLoader().getResource("test.csv").getFile();
         assertThat(parser.parse(fileName).size(), is(5));
     }
+
+    @Test
+    public void shouldHandleChineseCharacters() {
+        String fileName = this.getClass().getClassLoader().getResource("test-2.csv").getFile();
+        assertThat(parser.parse(fileName).size(), is(1));
+        assertThat(parser.parse(fileName).get(0).getAccount(), is("a simple github account"));
+    }
+
+    @Test
+    public void shouldTrimSpaces() {
+        String fileName = this.getClass().getClassLoader().getResource("test-3.csv").getFile();
+        assertThat(parser.parse(fileName).get(0).getAccount(), is("a simple github account"));
+    }
 }

@@ -30,6 +30,6 @@ public class CSVInputParser {
     }
 
     private void addToRecordSet(CSVRecord record, List<User> list) {
-        list.add(new User(record.get(NAME), record.get(ACCOUNT)));
+        list.add(new User(record.get(NAME).trim(), record.get(ACCOUNT).trim()));
     }
 }
