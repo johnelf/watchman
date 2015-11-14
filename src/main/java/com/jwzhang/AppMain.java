@@ -1,6 +1,5 @@
 package com.jwzhang;
 
-import com.google.common.collect.Lists;
 import com.jwzhang.analysis.SensitiveWordsWatchman;
 import com.jwzhang.httpclient.GitHubClient;
 import com.jwzhang.io.CSVInputParser;
@@ -10,24 +9,25 @@ import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.swing.text.html.Option;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 public class AppMain {
     private static String keywords = "realestate.com.au";
 
     public static void main(String[] args) throws IOException {
-        String fileName = "/tmp/a.csv";
 
         GitHubClient githubClient = new GitHubClient(HttpClientBuilder.create().build());
         SensitiveWordsWatchman sensitiveWordsWatchman = new SensitiveWordsWatchman(githubClient);
         CSVInputParser csvInputParser = new CSVInputParser();
         GitHubRegex gitHubRegex = new GitHubRegex();
 
-        List<User> users = csvInputParser.parse(fileName);
+        List<User> users = csvInputParser.parse(
+            Optional.of(args[0]).map(AppMain::filterNullValue).map(AppMain::getFileName).get());
 
         BufferedWriter output = null;
         File file = new File("/tmp/a.html");
@@ -53,5 +53,18 @@ public class AppMain {
 
         output.write("</body>");
         output.close();
+    }
+
+    private static String filterNullValue(String n) {
+        return n == null ? "" : n;
+    }
+
+    private static String getFileName(String name) {
+        String currentWorkingDir = Paths.get("").toAbsolutePath().toString();
+        if (Paths.get(name).isAbsolute()) {
+            return name;
+        } else {
+            return currentWorkingDir + "/" + name;
+        }
     }
 }
