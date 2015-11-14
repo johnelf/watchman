@@ -12,9 +12,9 @@ import java.util.List;
 
 public class CSVInputParser {
 
-    private CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader("Name","Account");
-    private final String ACCOUNT = "Name";
-    private final String NAME = "Account";
+    private CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader("Name","Github Account");
+    private final String NAME = "Name";
+    private final String ACCOUNT = "Github Account";
 
     public List<User> parse(String fileName) {
         List<User> result = Lists.newArrayList();
