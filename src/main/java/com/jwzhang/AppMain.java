@@ -7,13 +7,14 @@ import com.jwzhang.io.GitHubRegex;
 import com.jwzhang.model.github.GitHubItem;
 import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AppMain {
