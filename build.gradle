@@ -1,6 +1,20 @@
 apply plugin: 'idea'
 apply plugin: 'java'
 
+
+version = '0.0.1'
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Watchman',
+                'Implementation-Version': version,
+                'Main-Class': 'com.jwzhang.AppMain'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 repositories {
     mavenCentral()
 }
