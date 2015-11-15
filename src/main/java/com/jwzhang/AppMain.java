@@ -7,7 +7,6 @@ import com.jwzhang.io.GitHubRegex;
 import com.jwzhang.model.github.GitHubItem;
 import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
-import com.sun.media.sound.InvalidFormatException;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.*;
