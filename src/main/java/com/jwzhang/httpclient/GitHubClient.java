@@ -41,6 +41,7 @@ public class GitHubClient {
             result = gson.fromJson(bufferedReader, GitHubSearchResult.class);
         }
 
+        System.out.println(response.getStatusLine().getStatusCode() + " Response from github api.");
         return result;
     }
 

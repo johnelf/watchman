@@ -42,7 +42,7 @@ public class AppMain {
         BufferedWriter output = null;
         File file = new File(targetFile);
         output = new BufferedWriter(new FileWriter(file));
-        output.write("<head title=" + AppMain.keywords + "\"><head>\n<body>");
+        output.write("<head title=" + keywords + "\"><head>\n<body>");
         String userNames = "";
         users.removeIf(u -> u.getAccount().equals("") || u.getName().equals(""));
         for (User user: users) {
@@ -50,7 +50,7 @@ public class AppMain {
             userNames += "user:" + userName + " ";
         }
 
-        GitHubSearchResult searchResult = sensitiveWordsWatchman.watch(userNames + AppMain.keywords);
+        GitHubSearchResult searchResult = sensitiveWordsWatchman.watch(userNames + keywords);
         try {
             for (GitHubItem item : searchResult.getItems()) {
                 output.write("<a href=");
@@ -63,6 +63,7 @@ public class AppMain {
 
         output.write("</body>");
         output.close();
+        System.out.println("Write report to report.html in current working directory");
     }
 
     private static String processKeyWords(String keywords){
