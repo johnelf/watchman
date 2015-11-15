@@ -19,7 +19,7 @@ public class AppMain {
 
     public static void main(String[] args) throws IOException {
 
-        if (args.length < 2) {
+        if (args.length < 1) {
             System.out.println("Two Arguments are required.");
             return;
         }
