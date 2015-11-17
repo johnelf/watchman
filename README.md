@@ -15,7 +15,7 @@ e.g. `java -jar <watch-man-version.jar> <path a formatted csv file> <keywords yo
 
 4. The `report.html` would be generated in current working directory.
 
-*Note: The keywords are not case insensitive.*
+*Note: The keywords are case insensitive.*
 
 ## What does a formatted csv file look like
 
