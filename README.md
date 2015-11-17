@@ -17,10 +17,9 @@ e.g. `java -jar <watch-man-version.jar> <path a formatted csv file> <keywords yo
 
 There are basically two columns, first column would be `Name`, while the second would be `Github Account`.
 
-------------------------------------------------
+
 | Name | Github Account                        |
 ------------------------------------------------
 | test |  https://github.com/test              |
 ------------------------------------------------
 | testwhatever | http://github.com/testwhatever|
-------------------------------------------------
