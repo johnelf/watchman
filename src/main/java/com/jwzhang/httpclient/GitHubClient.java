@@ -7,6 +7,8 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,13 +37,15 @@ public class GitHubClient {
             .build();
         HttpResponse response;
         GitHubSearchResult result = new GitHubSearchResult();
+        System.out.println("Sending request to GitHub API: " + uri.toString());
         response = httpClient.execute(new HttpGet(uri));
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             BufferedReader bufferedReader = convertEntityContentToReader(response);
             result = gson.fromJson(bufferedReader, GitHubSearchResult.class);
         }
 
-        System.out.println(response.getStatusLine().getStatusCode() + " Response from github api.");
+        System.out.println(response.getStatusLine().getStatusCode() + " Response from GitHub API.");
+        EntityUtils.consume(response.getEntity());
         return result;
     }
 

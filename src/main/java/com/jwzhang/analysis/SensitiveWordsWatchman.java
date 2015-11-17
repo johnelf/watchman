@@ -18,6 +18,7 @@ public class SensitiveWordsWatchman implements SecurityGuard {
     public GitHubSearchResult watch(String keywords) {
         GitHubSearchResult results = new GitHubSearchResult();
         try {
+            System.out.println("Sending search query to github api.");
             results = gitHubClient.search(keywords);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
