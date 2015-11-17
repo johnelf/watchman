@@ -19,7 +19,6 @@ There are basically two columns, first column would be `Name`, while the second 
 
 
 | Name | Github Account                        |
-------------------------------------------------
+|------|---------------------------------------|
 | test |  https://github.com/test              |
-------------------------------------------------
 | testwhatever | http://github.com/testwhatever|
