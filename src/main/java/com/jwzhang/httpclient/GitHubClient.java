@@ -37,7 +37,7 @@ public class GitHubClient {
             .build();
         HttpResponse response;
         GitHubSearchResult result = new GitHubSearchResult();
-        System.out.println("Sending request to GitHub API: " + uri.toString());
+        System.out.println("Sending request to GitHub API");
         response = httpClient.execute(new HttpGet(uri));
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             BufferedReader bufferedReader = convertEntityContentToReader(response);
