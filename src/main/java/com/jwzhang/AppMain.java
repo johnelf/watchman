@@ -1,24 +1,25 @@
 package com.jwzhang;
 
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.jwzhang.analysis.SensitiveWordsWatchman;
 import com.jwzhang.httpclient.GitHubClient;
 import com.jwzhang.io.CSVInputParser;
 import com.jwzhang.io.GitHubRegex;
 import com.jwzhang.model.github.GitHubItem;
+import com.jwzhang.model.github.GitHubResultItem;
 import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AppMain {
     private static String keywords = "keywords";
@@ -40,12 +41,11 @@ public class AppMain {
             Optional.of(args[0]).map(AppMain::validateFileName).map(AppMain::getFileName).get());
         keywords = Optional.of(args[1]).map(AppMain::processKeyWords).get();
 
-        String targetFile = Paths.get("").toAbsolutePath().toString() + "/report.html";
+        String targetFile = Paths.get("").toAbsolutePath().toString() + "/" + keywords + ".html";
 
         BufferedWriter output = null;
-        File file = new File(targetFile);
-        output = new BufferedWriter(new FileWriter(file));
-        output.write("<head title=" + keywords + "\"><head>\n<body>");
+        output = new BufferedWriter(new FileWriter(new File(targetFile)));
+
         List<String> userNames = Lists.newArrayList();
         String names = "";
         users.removeIf(u -> u.getAccount().equals("") || u.getName().equals(""));
@@ -67,24 +67,34 @@ public class AppMain {
         List<GitHubSearchResult> resultSet = Lists.newArrayList();
         userNames.forEach(n -> resultSet.add(sensitiveWordsWatchman.watch(n + keywords)));
 
-        Integer totalMatched = 0;
-        try {
-            for (GitHubSearchResult searchResult: resultSet) {
-                totalMatched += searchResult.getTotalCounts();
-                for (GitHubItem item : searchResult.getItems()) {
-                    output.write("<a href=");
-                    output.write(item.getHtmlUrl());
-                    output.write(" target=\"_blank\">" + item.getRepo().getOwner().getLogin() + "</a><br>");
+        HashMap<String, GitHubResultItem> userMap = Maps.newHashMap();
+        for (GitHubSearchResult result : resultSet) {
+            for (GitHubItem item : result.getItems()) {
+                String loginName = item.getRepo().getOwner().getLogin();
+                if (userMap.containsKey(loginName)) {
+                    userMap.get(loginName).getUrls().add(item.getHtmlUrl());
+                } else {
+                    GitHubResultItem value = new GitHubResultItem();
+                    value.setAvartar(item.getRepo().getOwner().getAvatarUrl());
+                    value.setName(item.getRepo().getOwner().getLogin());
+                    value.getUrls().add(item.getHtmlUrl());
+                    value.setGitUrl(item.getGitUrl());
+                    userMap.put(loginName, value);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        output.write("</body>");
+        DefaultMustacheFactory mf = new DefaultMustacheFactory();
+        Mustache mustache = mf.compile("report.mustache");
+
+        HashMap<Object, Object> models = Maps.newHashMap();
+        models.put("userMap", userMap);
+
+        mustache.execute(output, models).flush();
         output.close();
-        System.out.println(totalMatched + " Items matched.");
-        System.out.println("Write report to report.html in current working directory");
+
+        System.out.println(resultSet.size() + " Items matched.");
+        System.out.println("Write report to " + keywords + ".html in current working directory");
     }
 
     private static String processKeyWords(String keywords){
