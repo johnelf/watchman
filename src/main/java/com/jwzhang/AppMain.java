@@ -9,6 +9,7 @@ import com.jwzhang.httpclient.GitHubClient;
 import com.jwzhang.io.CSVInputParser;
 import com.jwzhang.io.GitHubRegex;
 import com.jwzhang.model.github.GitHubItem;
+import com.jwzhang.model.github.GitHubMatchedResult;
 import com.jwzhang.model.github.GitHubResultItem;
 import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
@@ -74,12 +75,12 @@ public class AppMain {
             for (GitHubItem item : result.getItems()) {
                 String loginName = item.getRepo().getOwner().getLogin();
                 if (userMap.containsKey(loginName)) {
-                    userMap.get(loginName).getUrls().add(item.getHtmlUrl());
+                    userMap.get(loginName).getUrls().add(new GitHubMatchedResult(item.getName(), item.getHtmlUrl()));
                 } else {
                     GitHubResultItem value = new GitHubResultItem();
                     value.setAvartar(item.getRepo().getOwner().getAvatarUrl());
                     value.setName(item.getRepo().getOwner().getLogin());
-                    value.getUrls().add(item.getHtmlUrl());
+                    value.getUrls().add(new GitHubMatchedResult(item.getName(), item.getHtmlUrl()));
                     value.setGitUrl(item.getRepo().getOwner().getUrl());
                     userMap.put(loginName, value);
                 }

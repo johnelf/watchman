@@ -93,6 +93,16 @@
                   margin-bottom: 6px; }
                 .main-content ul.results li a p {
                   color: #888; }
+           .matched-results {
+            padding: 0 20px 20px;
+           }
+
+           .matched-results h5 {
+             margin-bottom: 5px;
+           }
+           .matched-result a {
+             padding: 3px 5px;
+           }
 
     </style>
 </head>
@@ -107,9 +117,12 @@
                     <img src={{avartar}} />
                     <h5>{{name}}</h5>
                 </a>
-                {{#urls}}
-                    <p>repo: <a href="{{.}}">matched</a></p>
-                {{/urls}}
+                <div class="matched-results">
+                    <h5>repo:</h5>
+                    {{#urls}}
+                        <div class="matched-result"><a href="{{url}}">{{name}}</a></div>
+                    {{/urls}}
+                </div>
             </li>
         {{/userMap}}
        </ul>

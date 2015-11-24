@@ -1,15 +1,17 @@
 package com.jwzhang.model.github;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.List;
+import java.util.Map;
 
 public class GitHubResultItem {
 
     private String name;
     private String avartar;
     private String gitUrl;
-    private List<String> urls;
+    private List<GitHubMatchedResult> urls;
 
     public GitHubResultItem() {
         this.urls = Lists.newArrayList();
@@ -31,11 +33,11 @@ public class GitHubResultItem {
         this.avartar = avartar;
     }
 
-    public List<String> getUrls() {
+    public List<GitHubMatchedResult> getUrls() {
         return urls;
     }
 
-    public void setUrls(List<String> urls) {
+    public void setUrls(List<GitHubMatchedResult> urls) {
         this.urls = urls;
     }
 
