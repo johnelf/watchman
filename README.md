@@ -13,7 +13,7 @@ e.g. `java -jar <watch-man-version.jar> <path a formatted csv file> <keywords yo
 
 3. Run `java -jar ./build/libs/watchman-all-0.0.1.jar <Path to csv file> <keywords>`
 
-4. The `report.html` would be generated in current working directory.
+4. The `<keywords>.html` would be generated in current working directory.
 
 *Note: The keywords are case insensitive.*
 
