@@ -102,13 +102,14 @@
 
        <ul class="results">
         {{#userMap}}
-            <li><a href={{gitUrl}} target='_blank'>
+            <li>
+                <a href={{gitUrl}} target='_blank'>
                     <img src={{avartar}} />
                     <h5>{{name}}</h5>
-                    {{#urls}}
-                        <p>repo: {{.}}</p>
-                    {{/urls}}
                 </a>
+                {{#urls}}
+                    <p>repo: <a href="{{.}}">matched</a></p>
+                {{/urls}}
             </li>
         {{/userMap}}
        </ul>

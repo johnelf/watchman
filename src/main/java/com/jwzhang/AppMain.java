@@ -78,7 +78,7 @@ public class AppMain {
                     value.setAvartar(item.getRepo().getOwner().getAvatarUrl());
                     value.setName(item.getRepo().getOwner().getLogin());
                     value.getUrls().add(item.getHtmlUrl());
-                    value.setGitUrl(item.getGitUrl());
+                    value.setGitUrl(item.getRepo().getOwner().getUrl());
                     userMap.put(loginName, value);
                 }
             }
