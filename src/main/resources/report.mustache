@@ -99,14 +99,15 @@
 
 <body>
     <div class="main-content clearfix">
+
        <ul class="results">
         {{#userMap}}
-            <li><a href={{value.gitUrl}} target='_blank'>
-                    <img src={{value.avartar}} />
-                    <h5>{{value.name}}</h5>
-                    {{#value.urls}}
+            <li><a href={{gitUrl}} target='_blank'>
+                    <img src={{avartar}} />
+                    <h5>{{name}}</h5>
+                    {{#urls}}
                         <p>repo: {{.}}</p>
-                    {{/value.urls}}
+                    {{/urls}}
                 </a>
             </li>
         {{/userMap}}

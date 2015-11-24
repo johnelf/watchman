@@ -88,7 +88,7 @@ public class AppMain {
         Mustache mustache = mf.compile("report.mustache");
 
         HashMap<Object, Object> models = Maps.newHashMap();
-        models.put("userMap", userMap);
+        models.put("userMap", userMap.values());
 
         mustache.execute(output, models).flush();
         output.close();
