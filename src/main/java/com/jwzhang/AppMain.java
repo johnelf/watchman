@@ -14,12 +14,14 @@ import com.jwzhang.model.github.GitHubSearchResult;
 import com.jwzhang.model.user.User;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class AppMain {
     private static String keywords = "keywords";
