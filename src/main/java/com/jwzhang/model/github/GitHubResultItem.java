@@ -1,10 +1,8 @@
 package com.jwzhang.model.github;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import java.util.List;
-import java.util.Map;
 
 public class GitHubResultItem {
 
