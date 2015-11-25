@@ -9,9 +9,9 @@ e.g. `java -jar <watch-man-version.jar> <path a formatted csv file> <keywords yo
 
 1. You need to install [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) first
 
-2. Run `./gradlew fatjar` to generate a jar file under `build/libs` directory, the jar name will look like `watchman-all-0.0.1.jar`
+2. Run `./gradlew fatjar` to generate a jar file under `build/libs` directory, the jar name will look like `watchman-all-1.0.0.jar`
 
-3. Run `java -jar ./build/libs/watchman-all-0.0.1.jar <Path to csv file> <keywords>`
+3. Run `java -jar ./build/libs/watchman-all-1.0.0.jar <Path to csv file> <keywords>`
 
 4. The `<keywords>.html` would be generated in current working directory.
 
